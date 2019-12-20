@@ -13,7 +13,7 @@ const baseQuery =
          decode(status,'Y','Approve','N','Unapprove', 'Cancel') status_desc, 
          status,
          remarks_quo 
-    from quo_h`;
+    from tkk_quo_h`;
 
 async function find(quotations) {
   let query = baseQuery;

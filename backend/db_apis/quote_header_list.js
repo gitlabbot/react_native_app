@@ -7,7 +7,7 @@ const baseQuery =
           status,
           flowout_book,
           flowout_no
-      from quo_h
+      from tkk_quo_h
     where status = 'N' 
       and to_char(flowout_date,'mm/yyyy') = to_char(sysdate,'mm/yyyy')
       and total > 300000 and total < 500000
@@ -17,7 +17,7 @@ const baseQuery =
           status,
           flowout_book,
           flowout_no
-      from quo_h
+      from tkk_quo_h
     where status = 'N' 
       and to_char(flowout_date,'mm/yyyy') = to_char(sysdate,'mm/yyyy')
       and total > 500000)
