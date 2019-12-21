@@ -10,6 +10,7 @@ const baseQuery =
          disc_amt, 
          disc_per, 
          to_char(total,'FM9,999,999,999,999.00') total, 
+         currency,
          decode(status,'Y','Approve','N','Unapprove', 'Cancel') status_desc, 
          status,
          remarks_quo 

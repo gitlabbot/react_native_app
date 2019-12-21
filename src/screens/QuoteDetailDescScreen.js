@@ -20,7 +20,7 @@ export default class QuotationDetailDescScreen extends React.Component {
       quote_book: this.props.navigation.state.params.flowout_book, 
       quote_no: this.props.navigation.state.params.flowout_no 
     };
-    axios.get("http://172.20.10.4:8081/api/quote_detail_desc/" + sendParams.quote_book + "/" + sendParams.quote_no)
+    axios.get("http://192.168.100.107:8081/api/quote_detail_desc/" + sendParams.quote_book + "/" + sendParams.quote_no)
       .then(res => {
         let quote_detail = res.data;
         this.setState({ isLoading: false, quote_detail });

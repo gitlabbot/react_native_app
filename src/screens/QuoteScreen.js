@@ -17,11 +17,11 @@ export default class QuotationScreen extends React.Component {
   }
 
   goToDetailScreen({flowout_book, flowout_no}) {
-    this.props.navigation.navigate('QuotationDetail', {flowout_book, flowout_no});
+    this.props.navigation.navigate('QuoteDetail', {flowout_book, flowout_no});
   }
 
   componentDidMount() {
-    axios.get("http://172.20.10.4:8081/api/quote_header_list")
+    axios.get("http://192.168.100.107:8081/api/quote_header_list")
       .then(res => {
         const quote_list = res.data;
         this.setState({ isLoading: false, quote_list });

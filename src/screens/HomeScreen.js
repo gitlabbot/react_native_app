@@ -60,15 +60,9 @@ const HomeScreen = ({navigation}) => {
                 style_css={{ backgroundColor: "#FF008C" }}
           />
           <HomeDetail 
-                navigate_name={()=>navigation.navigate('Quotation')}
+                navigate_name={()=>navigation.navigate('Quote')}
                 icon_name="apps"
                 module_name="Call API Quotation Lists"
-                style_css={{ backgroundColor: "#FF008C" }}
-          />
-          <HomeDetail 
-                navigate_name={()=>navigation.navigate('QuotationDetailDesc')}
-                icon_name="apps"
-                module_name="Call API Quotation Details"
                 style_css={{ backgroundColor: "#FF008C" }}
           />
         </Content>

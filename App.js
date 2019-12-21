@@ -7,9 +7,9 @@ import CounterScreen from './src/screens/CounterScreen';
 import ColorScreen from './src/screens/ColorScreen';
 import ApiScreen from './src/screens/ApiScreen';
 import ApiCustScreen from './src/screens/ApiCustScreen';
-import QuotationScreen from './src/screens/QuotationScreen';
-import QuotationDetailScreen from './src/screens/QuotationDetailScreen';
-import QuotationDetailDescScreen from './src/screens/QuotationDetailDescScreen';
+import QuoteScreen from './src/screens/QuoteScreen';
+import QuoteDetailScreen from './src/screens/QuoteDetailScreen';
+import QuoteDetailDescScreen from './src/screens/QuoteDetailDescScreen';
 import * as Font from "expo-font";
 // import { Icon } from 'react-native-elements';
 // import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -32,9 +32,9 @@ const navigator = createStackNavigator(
     Color: ColorScreen,
     Api: ApiScreen,
     Cust: ApiCustScreen,
-    Quotation: QuotationScreen,
-    QuotationDetail: QuotationDetailScreen,
-    QuotationDetailDesc: QuotationDetailDescScreen
+    Quote: QuoteScreen,
+    QuoteDetail: QuoteDetailScreen,
+    QuoteDetailDesc: QuoteDetailDescScreen
   },
   {
     initialRouteName: 'Home',

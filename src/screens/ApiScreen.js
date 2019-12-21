@@ -17,7 +17,7 @@ export default class FetchExample extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('http://172.20.10.4:8081/api/modules_app')
+    axios.get('http://192.168.100.107:8081/api/modules_app')
       .then(res => {
         const modules_app = res.data;
         this.setState({ isLoading: false, modules_app });
