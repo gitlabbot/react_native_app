@@ -2,7 +2,7 @@ import React from 'react';
 import { ActivityIndicator, View, StyleSheet } from 'react-native';
 import { Header, Footer, Container, Content, ListItem, Left, Body, Right, Button, Icon, Text, Title, FooterTab } from 'native-base';
 // import { mocker } from '../mockers/MockerApiData';
-// import { generator } from '../registers/api';
+import { apiBaseURL } from '../registers/api';
 import axios from 'axios';
 
 export default class QuotationScreen extends React.Component {
@@ -11,7 +11,8 @@ export default class QuotationScreen extends React.Component {
     super(props);
     this.state = {
       quote_list: [],
-      isLoading: true
+      isLoading: true,
+      apiGetData: apiBaseURL + 'api/quote_header_list'
     };
     this.goToDetailScreen = this.goToDetailScreen.bind(this);
   }
@@ -21,7 +22,7 @@ export default class QuotationScreen extends React.Component {
   }
 
   componentDidMount() {
-    axios.get("http://192.168.100.107:8081/api/quote_header_list")
+    axios.get(this.state.apiGetData)
       .then(res => {
         const quote_list = res.data;
         this.setState({ isLoading: false, quote_list });
@@ -42,7 +43,7 @@ export default class QuotationScreen extends React.Component {
         <Header>
           <Title>Quotation Approvals</Title>
         </Header>
-        <Content>      
+        <Content>    
           { this.state.quote_list.map((quotations,i) => 
             <ListItem icon key={i} style={{flex: 1}} 
                            onPress={() => this.goToDetailScreen({flowout_book: quotations.FLOWOUT_BOOK, 

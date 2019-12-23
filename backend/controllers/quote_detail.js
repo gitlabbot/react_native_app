@@ -14,13 +14,13 @@ async function get(req, res, next) {
   try {
     const context = {};
     // call parameter
-    context.quote_book = req.params.quote_book;
-    context.quote_no   = req.params.quote_no;
+    context.flowout_book = req.params.flowout_book;
+    context.flowout_no   = req.params.flowout_no;
 
     const rows = await quotations.find(context);
 
     // check parameter for send status code
-    if (req.params.quote_book && req.params.quote_no) {
+    if (req.params.flowout_book && req.params.flowout_no) {
       if (rows.length === 1) {
         res.status(200).json( rows[0]);
       } else {
@@ -41,11 +41,10 @@ async function put(req, res, next) {
   try {
     let context = getQuoteDetailFromRec(req);
 
-    context.quote_book = req.params.quote_book;
-    context.quote_no   = req.params.quote_no;
+    context.flowout_book   = req.params.flowout_book;
+    context.flowout_no   = req.params.flowout_no;
 
     resData = await quotations.update(context);
-
     if (resData !== null) {
       res.status(200).json(resData);
     } else {

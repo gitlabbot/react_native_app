@@ -21,14 +21,14 @@ async function find(quotations) {
   const binds = {};
 
 // check parameter for add condition
-  if (quotations.quote_book && quotations.quote_no) {
+  if (quotations.flowout_book && quotations.flowout_no) {
     // mapping parameter
-    binds.quote_book = quotations.quote_book;
-    binds.quote_no   = quotations.quote_no;
+    binds.flowout_book = quotations.flowout_book;
+    binds.flowout_no   = quotations.flowout_no;
 
-    query += `\nWhere flowout_book = :quote_book 
-                  and flowout_no   = :quote_no
-                  and status = 'N'`;
+    query += `\nWhere flowout_book = :flowout_book 
+                  and flowout_no   = :flowout_no
+                  --and status = 'N'`;
   }
   const result = await database.executeData(query, binds);
   return result.rows;
@@ -41,8 +41,8 @@ const updateSql =
  `update tkk_quo_h
      set status       = :status,
          remarks_quo  = :remarks_quo
-   where flowout_book = :quote_book
-     and flowout_no   = :quote_no`;
+   where flowout_book = :flowout_book
+     and flowout_no   = :flowout_no`;
 
 async function update(quotation) {
   const updateStatus = Object.assign({}, quotation);

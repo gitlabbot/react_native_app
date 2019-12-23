@@ -19,7 +19,7 @@ router.route('/quote_header_list')
   .get(quote_header_list.get);
 
 //quotation detail 
-router.route('/quote_detail/:quote_book/:quote_no')
+router.route('/quote_detail/:flowout_book/:flowout_no')
   .get(quote_detail.get)
   .put(quote_detail.put);
 

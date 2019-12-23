@@ -1,8 +1,8 @@
 import React from 'react';
-import { ActivityIndicator, View, StyleSheet } from 'react-native';
+import { ActivityIndicator, View, StyleSheet, Alert } from 'react-native';
 import { Card, CardItem, Header, Footer, Container, Content, ListItem, Left, Body, Right, Button, Icon, Text, Title, FooterTab } from 'native-base';
 // import { mocker } from '../mockers/MockerApiData';
-// import { generator } from '../registers/api';
+import { apiBaseURL } from '../registers/api';
 import axios from 'axios';
 
 export default class QuotationDetailScreen extends React.Component {
@@ -11,7 +11,8 @@ export default class QuotationDetailScreen extends React.Component {
     super(props);
     this.state = {
       quote_detail: [],
-      isLoading: true
+      isLoading: true,
+      apiQueryData: apiBaseURL + 'api/quote_detail/'
     };
     this.goToDetailScreen = this.goToDetailScreen.bind(this);
   }
@@ -20,16 +21,50 @@ export default class QuotationDetailScreen extends React.Component {
     this.props.navigation.navigate('QuoteDetailDesc', {flowout_book, flowout_no});
   }
 
+  callUpdateStatus(status) {
+    let paramStatus = (status == 'Y') ? 'Approve' : 'Reject';
+    Alert.alert(
+      paramStatus,
+      'Are you sure you want to '+ paramStatus.toLowerCase() + ' this request?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () => this.updateStatus(status)},
+      ],
+      {cancelable: false},
+    );
+  }
+
+  updateStatus(status) {
+    let sendParams = { 
+      quote_book: this.props.navigation.state.params.flowout_book, 
+      quote_no: this.props.navigation.state.params.flowout_no 
+    };
+    axios.put(this.state.apiQueryData + sendParams.quote_book + "/" + sendParams.quote_no, { STATUS: status })
+    .then(res => {
+      Alert.alert(
+        'Update Successfully',res.data,
+        [
+          {text: 'OK', onPress: () => this.props.navigation.goBack(null)},
+        ],
+        {cancelable: false},
+      );
+    })
+    .catch(error => console.log(error));
+  }
+
   componentDidMount() {
     let sendParams = { 
       quote_book: this.props.navigation.state.params.flowout_book, 
       quote_no: this.props.navigation.state.params.flowout_no 
     };
-    axios.get("http://192.168.100.107:8081/api/quote_detail/" + sendParams.quote_book + "/" + sendParams.quote_no)
+    axios.get(this.state.apiQueryData + sendParams.quote_book + "/" + sendParams.quote_no)
       .then(res => {
         let quote_detail = res.data;
         this.setState({ isLoading: false, quote_detail });
-        console.log(quote_detail.CUST_NAME);
       })
       .catch(error => console.log(error));
   }
@@ -48,7 +83,7 @@ export default class QuotationDetailScreen extends React.Component {
         <Header>
             <Text style={{fontWeight: 'bold'}}>Quote No. : {this.state.quote_detail.QUOTE_DOC}</Text>
         </Header>
-        <Content>    
+        <Content>  
           <Card>
             <CardItem bordered>
               <Body>
@@ -89,8 +124,8 @@ export default class QuotationDetailScreen extends React.Component {
           </Card>
           <Card>
             <CardItem bordered>
-              <Button iconLeft rounded success style = {{padding: '5%', alignSelf: 'center'}}><Icon name='apps' /><Text>Approve</Text></Button>
-              <Button iconLeft rounded danger style = {{padding: '7.1%', alignSelf: 'center'}}><Icon name='apps' /><Text>Reject</Text></Button>
+              <Button iconLeft rounded success onPress={() =>this.callUpdateStatus('Y')} style = {{padding: '5%', alignSelf: 'center'}}><Icon name='apps' /><Text>Approve</Text></Button>
+              <Button iconLeft rounded danger onPress={() =>this.callUpdateStatus('Z')} style = {{padding: '7.1%', alignSelf: 'center'}}><Icon name='apps' /><Text>Reject</Text></Button>
             </CardItem>
           </Card>
         </Content>
