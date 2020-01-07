@@ -4,12 +4,16 @@ const morgan = require('morgan');
 const webServerConfig = require('../config/web-server.js');
 const router = require('./router.js');
 const helmet = require('helmet');
+const cors = require('cors');
 
 let httpServer;
 
 function initialize() {
   return new Promise((resolve, reject) => {
     const app = express();
+
+    app.use(cors());
+    app.options('*', cors());
 
     httpServer = http.createServer(app);
 

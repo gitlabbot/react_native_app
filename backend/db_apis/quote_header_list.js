@@ -6,20 +6,22 @@ const baseQuery =
           'Manager' app_pos, 
           status,
           flowout_book,
-          flowout_no
+          flowout_no,
+          cust_name
       from tkk_quo_h
     where status = 'N' 
-      and to_char(flowout_date,'mm/yyyy') = to_char(sysdate,'mm/yyyy')
+      --and to_char(flowout_date,'mm/yyyy') = to_char(sysdate,'mm/yyyy')
       and total > 300000 and total < 500000
     union all   
     select flowout_book||'-'||flowout_no quote_doc, 
           'Director' app_pos, 
           status,
           flowout_book,
-          flowout_no
+          flowout_no,
+          cust_name
       from tkk_quo_h
     where status = 'N' 
-      and to_char(flowout_date,'mm/yyyy') = to_char(sysdate,'mm/yyyy')
+      --and to_char(flowout_date,'mm/yyyy') = to_char(sysdate,'mm/yyyy')
       and total > 500000)
      order by flowout_book, flowout_no`;
 
