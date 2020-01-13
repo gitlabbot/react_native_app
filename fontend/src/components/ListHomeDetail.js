@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { ListItem, Left, Body, Right, Button, Icon, Text} from 'native-base';
 
-const HomeDetail = ({navigate_name, icon_name, module_name, style_css}) => {
+const ListHomeDetail = ({navigate_name, icon_name, module_name, style_css}) => {
     return (
         <ListItem icon onPress={navigate_name}>
             <Left>
@@ -22,4 +22,4 @@ const HomeDetail = ({navigate_name, icon_name, module_name, style_css}) => {
 
 const styles = StyleSheet.create({});
 
-export default HomeDetail;
+export default ListHomeDetail;

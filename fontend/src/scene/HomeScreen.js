@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Container, Header, Right, Button, Icon, Title, Text, Footer, FooterTab, Content } from 'native-base';
-import HomeDetail from '../components/HomeDetail';
+import ListHomeDetail from '../components/ListHomeDetail';
 // import { Font } from 'expo';
 // import { colors } from 'react-native-elements';
 
@@ -17,52 +17,58 @@ const HomeScreen = ({navigation}) => {
           </Right>
         </Header>
         <Content>
-          <HomeDetail 
+          <ListHomeDetail 
                 navigate_name={()=>navigation.navigate('Components')}
                 icon_name="apps"
                 module_name="Components Modules"
                 style_css={{ backgroundColor: "#FF0000" }}
           />
-          <HomeDetail 
+          <ListHomeDetail 
                 navigate_name={()=>navigation.navigate('List')}
                 icon_name="apps"
                 module_name="List Modules"
                 style_css={{ backgroundColor: "#00BF29" }}
           />
-          <HomeDetail 
+          <ListHomeDetail 
                 navigate_name={()=>navigation.navigate('Image')}
                 icon_name="apps"
                 module_name="Image Modules"
                 style_css={{ backgroundColor: "#0037FF" }}
           />
-          <HomeDetail 
+          <ListHomeDetail 
                 navigate_name={()=>navigation.navigate('Counter')}
                 icon_name="apps"
                 module_name="Counter Modules"
                 style_css={{ backgroundColor: "#EDB407" }}
           />
-          <HomeDetail 
+          <ListHomeDetail 
                 navigate_name={()=>navigation.navigate('Color')}
                 icon_name="apps"
                 module_name="Color Modules"
                 style_css={{ backgroundColor: "#FF008C" }}
           />
-          <HomeDetail 
+          <ListHomeDetail 
                 navigate_name={()=>navigation.navigate('Api')}
                 icon_name="apps"
                 module_name="Call API Modules"
                 style_css={{ backgroundColor: "#FF008C" }}
           />
-          <HomeDetail 
+          <ListHomeDetail 
                 navigate_name={()=>navigation.navigate('Cust')}
                 icon_name="apps"
                 module_name="Call API Customer Lists"
                 style_css={{ backgroundColor: "#FF008C" }}
           />
-          <HomeDetail 
+          <ListHomeDetail 
                 navigate_name={()=>navigation.navigate('Quote')}
                 icon_name="apps"
                 module_name="Call API Quotation Lists"
+                style_css={{ backgroundColor: "#FF008C" }}
+          />
+          <ListHomeDetail 
+                navigate_name={()=>navigation.navigate('LoginScreen')}
+                icon_name="apps"
+                module_name="Login Screen"
                 style_css={{ backgroundColor: "#FF008C" }}
           />
         </Content>
